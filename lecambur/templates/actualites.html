@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}La Terrasse - Actualités politique{% endblock %}</title>
+  </head>
+  <body> {% block content %}
+    <div class="cat-main-left">
+      <ul class="breadcrumb">
+        <li><a href="{% url 'lecambur:home' %}">Accueil</a></li>
+        <li>&rsaquo;</li>
+        <li><a href="{% url 'lecambur:actualites' %}">Actualités</a></li>
+      </ul>
+      <div class="cat-main-post"> {% for Post in posts|slice:":1" %}
+        <h2 class="cat-main-title"><a href="{{ Post.get_absolute_url }}">{{ Post.title }}</a></h2>
+        <p class="cat-main-date"> Publié le {{ Post.published_date }} par {{ Post.author.name }}</p>
+        <a href="{{ Post.get_absolute_url }}"><img src="{{ Post.photo.url }}" alt="" style="height:450px;width:730px;"></a>
+        <p class="cat-main-post-description">{{ Post.description }}</p>
+        <a href="{{ Post.get_absolute_url }}" class="more">Lire la suite &#187;</a> {% endfor %}
+      </div>
+      <hr class="content-separator"></hr>
+      <div class="list-category"> {% for Post in page_obj|slice:"1:" %}
+        <div class="list-column">
+          <a href="#"><img src="{{ Post.photo.url }}" alt="" style="width:180px;height:140px;"></a>
+          <h3 class="list-column-title"><a href="{{ Post.get_absolute_url }}">{{ Post.title }}</a></h3>
+          <p class="list-column-description">{{ Post.description }}</p>
+        </div><br> {% endfor %}
+      </div>
+      <div class="center-pagination">
+        <div class="pagination">
+          {% if page_obj.has_previous %}
+             <a href="?page=1">&laquo;</a>
+             <a href="?page={{ page_obj.previous_page_number }}">précédent</a>
+         {% endif %}
+             Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}
+         {% if page_obj.has_next %}
+             <a href="?page={{ page_obj.next_page_number }}">suivant</a>
+             <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+         {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="cat-right-sidebar"> {% for Post in posts|slice:"4:6" %}
+      <div class="cat-right-post">
+        <a href="{{ Post.get_absolute_url }}"><img src="{{ Post.photo.url }}" alt="" style="width:400px;height:240px;"></a>
+        <h3><a href="{{ Post.get_absolute_url }}">{{ Post.title }}</a></h3>
+        <p>{{ Post.description }}</p>
+        <a href="{{ Post.get_absolute_url }}" class="more">Lire la suite &#187;</a>
+      </div> {% endfor %}
+    </div>
+  </body> {% endblock %}
+</html>

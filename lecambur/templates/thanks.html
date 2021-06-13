@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}La Terrasse - Contact{% endblock %}</title>
+  </head>
+  <body>
+    {% block content %}
+    <div class="m2c-cat">
+      <div class="m2c-cat-left">
+        <div class="left-breadcrumb">
+          <ul class="breadcrumb">
+            <li><a href="{% url 'lecambur:home' %}">Accueil</a></li>
+          </ul>
+        </div>
+        <div class="container">
+          <h1>Merci</h1>
+        </div>
+    </div>
+  </body> {% endblock %}
+</html>

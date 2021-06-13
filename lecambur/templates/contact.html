@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %} - Contact{% endblock %}</title>
+  </head>
+  <body>
+    {% block content %}
+    <div class="m2c-cat">
+      <div class="m2c-cat-left">
+        <div class="left-breadcrumb">
+          <ul class="breadcrumb">
+            <li><a href="{% url 'lecambur:home' %}">Accueil</a></li>
+          </ul>
+        </div>
+        <div class="container">
+          <h3>Contacter nous</h3>
+            <form method="POST">
+               {% csrf_token %}
+               {{ form.non_field_errors }}
+             <form method="POST">
+               {{ form.name.errors }}
+               <label for="{{ form.name.id_for_label }}"> Nom :</label>
+               {{ form.name|linebreaks }}
+
+               {{ form.subject.errors }}
+               <label for="{{ form.subject.id_for_label }}"> Objet :</label>
+               {{ form.subject|linebreaks }}
+
+               {{ form.sender.errors }}
+               <label for="{{ form.sender.id_for_label }}"> Email :</label>
+               {{ form.sender|linebreaks }}
+
+               {{ form.message.errors }}
+               <label for="{{ form.message.id_for_label }}"> Sujet : <br>{{ form.message }}</label>
+               
+			   <br><input type="submit" value="Envoyer">
+            </form>
+        </div>
+    </div>
+  </body> {% endblock %}
+</html>

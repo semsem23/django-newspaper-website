@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body> {% block content %}
+    <div class="main-left">
+      <div class="main-post"> {% for Post in posts|slice:":1" %}
+        <h2 class="main-title"><a href="{{ Post.get_absolute_url }}">{{ Post.title }}</a></h2>
+        <p class="main-date">Publié le {{ Post.published_date }} par {{ Post.author }}</p>
+        <a href=""><img src="{{ Post.photo.url }}" alt="" style="height:350px;width:550px;"></a>
+        <p class="main-post-description">{{ Post.description }}</p>
+        <a href="{{ Post.get_absolute_url }}" class="more">Lire la suite &#187;</a><br> {% endfor %}
+      </div>
+      <hr class="content-separator"></hr>
+      <div class="main-list-category">
+        <div class="main-list-column-left"> {% for Post in posts|slice:"1:2" %}
+          <a href="{{ Post.get_absolute_url }}"><img src="{{ Post.photo.url }}" alt="" style="width:170px;height:140px;"></a>
+          <h3 class="main-list-column-title"><a href="{{ Post.get_absolute_url }}">{{ Post.title }}</a></h3>
+          <p class="main-list-column-description">{{ Post.description }}</p> {% endfor %}
+        </div>
+        <div class="main-list-column-left"> {% for Post in posts|slice:"2:3" %}
+          <a href="{{ Post.get_absolute_url }}"><img src="{{ Post.photo.url }}" alt="" style="width:170px;height:140px;"></a>
+          <h3 class="main-list-column-title"><a href="{{ Post.get_absolute_url }}">{{ Post.title }}</a></h3>
+          <p class="main-list-column-description">{{ Post.description }}</p> {% endfor %}
+        </div>
+        <div class="main-list-column-left"> {% for Post in posts|slice:"3:4" %}
+          <a href="{{ Post.get_absolute_url }}"><img src="{{ Post.photo.url }}" alt="" style="width:170px;height:140px;"></a>
+          <h3 class="main-list-column-title"><a href="{{ Post.get_absolute_url }}">{{ Post.title }}</a></h3>
+          <p class="main-list-column-description">{{ Post.description }}</p> {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="main-mid-sidebar">
+      <div class="main-mid-post"> {% for Post in posts|slice:"4:6" %}
+        <a href="{{ Post.get_absolute_url }}"><img src="{{ Post.photo.url }}" alt="" style="width:300px;height:240px;"></a>
+        <h3><a href="{{ Post.get_absolute_url }}"></a>{{ Post.title }}</h3>
+        <p>{{ Post.description }}</p>
+        <a href="{{ Post.get_absolute_url }}" class="more">Lire la suite &#187;</a><br> {% endfor %}
+      </div>
+    </div>
+    <div class="main-right-sidebar"> 
+	  <div class="main-right-post"> {% for Post in posts|slice:"6:8" %}
+	   <a href="{{ Post.get_absolute_url }}"><img src="{{ Post.photo.url }}" alt="" style="width:300px;height:240px;"></a>
+        <h3><a href="{{ Post.get_absolute_url }}"></a>{{ Post.title }}</h3>
+        <p>{{ Post.description }}</p> 
+        <a href="{{ Post.get_absolute_url }}" class="more">Lire la suite &#187;</a><br> {% endfor %}
+      </div>
+    </div>
+ </body> {% endblock %}
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static "/css/styles.css" %}">
+  </head>
+  <body>
+    <div class="topnav">
+      <div class="topnav-left">
+        <a href=""><img src="{% static "/images/facebook.png" %}" alt="facebook" style="width:30px;height:30px;"></a>
+        <a href=""><img src="{% static "/images/twitter.png" %}" alt="twitter-logo" style="width:30px;height:30px;"></a>
+      </div>
+    </div>
+    <div class="main-page">
+      <div class="logo-banner" >
+         <a href="{% url 'lecambur:home' %}"><img src="{% static "/images/lecambur.png" %}" alt="lecambur-logo" style="width:300px;height:100px;"></a>
+      </div>
+      <div class="sticky-nav">
+        <div class="dropdown">
+          <a href="{% url 'lecambur:actualites' %}"><button class="dropbtn">ACTUALITE</button></a>
+          <div class="dropdown-content">
+            <a href="">Politique</a>
+            <a href="">Economie</a>
+            <a href="">Finance</a>
+            <a href="">People</a>
+	        <a href="">Sport</a>
+          </div>
+        </div>
+        <a href="">POLITIQUE</a>
+        <a href="">ECONOMIE</a>
+        <a href="">SPORT</a>
+        <a href="">FINANCE</a>
+        <a href="">PEOPLE</a> 
+      </div>
+      {% block content %}
+      {% endblock %}
+      <div id="dashboard">
+        <div class="dashboard-left">
+          <h4>LeCambur</h4>
+          <p>LeCambur est un site d'information qui traite l'actualité.</p>
+        </div>
+        <div class="dashboard-middle">
+          <ul class="legal">
+            <li><a href="#">A propos</a></li>
+            <li><a href="{% url 'lecambur:contact' %}">Contact</a></li>
+            <li><a href="#">CGU</a></li>
+            <li><a href="#">Mentions légales</a></li>
+          </ul>
+        </div>
+      </div>
+      <div id="footer">
+        <div class="footer-title">
+          <p>LeCambur© Copyright 2020.</p>
+		
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

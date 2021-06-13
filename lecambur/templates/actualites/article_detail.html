@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}La Terrasse - Actualités politique{% endblock %}</title>
+  </head>
+  <body> {% block content %}
+    <div class="cat-main-left">
+      <ul class="breadcrumb">
+        <li><a href="{% url 'lecambur:home' %}">Accueil</a></li>
+        <li>&rsaquo;</li>
+        {% with post.topic as total %} 
+        <li><a href="">{{ total|capfirst }}</a></li>
+		{% endwith %}
+      </ul>
+      <div class="cat-main-post">
+        <h2 class="cat-main-title">{{ post.title }}</h2>
+        <p class="cat-main-date"> Publié le {{ post.published_date }} par {{ post.author.name }}</p>
+        <img src="{{ post.photo.url }}" alt="" style="height:400px;width:730px;">
+        <p class="cat-main-post-description">{{ post.content|safe }}</p>
+      </div>
+      <br><hr class="content-separator"></hr>
+      
+	 
+    </div>
+  </body> {% endblock %}
+</html>
